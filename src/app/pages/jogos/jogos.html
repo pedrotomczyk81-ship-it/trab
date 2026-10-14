@@ -1,0 +1,16 @@
+<section class="catalog page-wrap">
+  <div class="catalog-heading"><div><span class="eyebrow">A BIBLIOTECA</span><h1 class="display-title">CATÁLOGO<span>.</span></h1><p>O próximo favorito está a alguns cliques de distância.</p></div><div class="catalog-count"><strong>{{ jogosFiltrados.length.toString().padStart(2, '0') }}</strong><span>JOGOS ENCONTRADOS</span></div></div>
+  <div class="filters">
+    <label class="search-field"><span aria-hidden="true">⌕</span><input type="search" name="busca" [(ngModel)]="busca" placeholder="Buscar jogo pelo nome..." aria-label="Buscar jogos pelo nome"></label>
+    <label class="category-field"><span>CATEGORIA</span><select name="categoria" [(ngModel)]="categoria" aria-label="Filtrar por categoria"><option value="">Todas</option>@for (item of categorias; track item) { <option [value]="item">{{ item }}</option> }</select></label>
+  </div>
+  @if (jogosFiltrados.length > 0) {
+    <div class="catalog-grid">
+      @for (jogo of jogosFiltrados; track jogo.id) {
+        <app-jogo-card [jogo]="jogo" />
+      }
+    </div>
+  } @else {
+    <div class="empty-state"><strong>Nenhum jogo encontrado</strong><span>Tente outro nome ou escolha uma categoria diferente.</span></div>
+  }
+</section>

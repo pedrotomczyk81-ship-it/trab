@@ -1,0 +1,19 @@
+<article class="game-card">
+  <a class="cover" [routerLink]="['/jogos', jogo.id]" [attr.aria-label]="'Ver detalhes de ' + jogo.nome">
+    <img [src]="jogo.imagem" [alt]="'Capa ilustrativa de ' + jogo.nome" loading="lazy">
+    <span class="category">{{ jogo.categoria }}</span>
+    <span class="cover-index">GH / {{ jogo.id.toString().padStart(2, '0') }}</span>
+  </a>
+  <div class="card-body">
+    <div class="card-meta"><span class="rating">★ {{ jogo.avaliacao.toFixed(1) }}</span><span class="price">{{ jogo.preco === 0 ? 'Gratuito' : (jogo.preco | currency:'BRL') }}</span></div>
+    <h3><a [routerLink]="['/jogos', jogo.id]">{{ jogo.nome }}</a></h3>
+    <p>{{ jogo.descricao }}</p>
+    <div class="card-bottom">
+      @switch (jogo.disponivel) {
+        @case (true) { <span class="status available"><i></i> Disponível</span> }
+        @case (false) { <span class="status unavailable"><i></i> Indisponível</span> }
+      }
+      <a class="details-link" [routerLink]="['/jogos', jogo.id]">Detalhes <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</article>

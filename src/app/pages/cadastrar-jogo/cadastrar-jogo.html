@@ -1,0 +1,18 @@
+<section class="form-page page-wrap">
+  <div class="form-intro"><span class="eyebrow">ADICIONE À BIBLIOTECA</span><h1 class="display-title">NOVO<br>JOGO<span>.</span></h1><p>Mais uma aventura para descobrir. Preencha os dados e inclua no catálogo.</p><a class="back-link" routerLink="/jogos">← Voltar ao catálogo</a></div>
+  <form class="game-form" #form="ngForm" (ngSubmit)="salvar(form)" novalidate>
+    <div class="form-top"><span class="eyebrow">REGISTRO / GH-{{ (jogoService.totalJogos() + 1).toString().padStart(3, '0') }}</span><span class="required-note">* CAMPOS OBRIGATÓRIOS</span></div>
+    <label class="field full-field">Nome do jogo <span>*</span><input type="text" name="nome" [(ngModel)]="jogo.nome" required minlength="2" #nome="ngModel" placeholder="Ex.: Ori and the Blind Forest"><small class="validation">@if (nome.invalid && (nome.dirty || nome.touched || form.submitted)) { Informe um nome com pelo menos 2 caracteres. }</small></label>
+    <label class="field full-field">Descrição <span>*</span><textarea name="descricao" [(ngModel)]="jogo.descricao" required rows="3" #descricao="ngModel" placeholder="Conte um pouco sobre o jogo..."></textarea><small class="validation">@if (descricao.invalid && (descricao.touched || form.submitted)) { A descrição é obrigatória. }</small></label>
+    <div class="form-row">
+      <label class="field">Categoria <span>*</span><select name="categoria" [(ngModel)]="jogo.categoria" required>@for (item of categorias; track item) { <option [value]="item">{{ item }}</option> }</select></label>
+      <label class="field">Preço (R$) <span>*</span><input type="number" name="preco" [(ngModel)]="jogo.preco" required min="0" step="0.01" #preco="ngModel" placeholder="0,00"><small class="validation">@if (preco.invalid && (preco.touched || form.submitted)) { Informe um preço igual ou maior que zero. }</small></label>
+    </div>
+    <div class="form-row">
+      <label class="field">Avaliação <span>*</span><input type="number" name="avaliacao" [(ngModel)]="jogo.avaliacao" required min="0" max="5" step="0.1" #avaliacao="ngModel" placeholder="0 a 5"><small class="validation">@if (avaliacao.invalid && (avaliacao.touched || form.submitted)) { A nota deve estar entre 0 e 5. }</small></label>
+      <label class="field">URL da imagem <span>*</span><input type="url" name="imagem" [(ngModel)]="jogo.imagem" required #imagem="ngModel" placeholder="https://..."><small class="validation">@if (imagem.invalid && (imagem.touched || form.submitted)) { Informe uma URL válida. }</small></label>
+    </div>
+    <label class="availability"><input type="checkbox" name="disponivel" [(ngModel)]="jogo.disponivel"><span class="toggle-mark"></span><span><strong>Disponível no catálogo</strong><small>Indica que o jogo pode ser encontrado pelos visitantes.</small></span></label>
+    <div class="form-actions"><button class="primary-button" type="submit">Adicionar jogo <span>↗</span></button><a class="cancel-link" routerLink="/jogos">Cancelar</a></div>
+  </form>
+</section>

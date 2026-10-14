@@ -1,0 +1,14 @@
+<section class="detail page-wrap">
+  @if (jogo; as item) {
+    <a class="back-link" routerLink="/jogos">← Voltar ao catálogo</a>
+    <article class="detail-layout">
+      <div class="detail-cover"><img [src]="item.imagem" [alt]="'Capa ilustrativa de ' + item.nome"><span class="cover-code">GAMEHUB / {{ item.id.toString().padStart(3, '0') }}</span></div>
+      <div class="detail-info"><span class="eyebrow">{{ item.categoria }} <span class="slash">/</span> ★ {{ item.avaliacao.toFixed(1) }} DE 5</span><h1 class="display-title">{{ item.nome }}</h1><p class="description">{{ item.descricao }}</p>
+        <div class="detail-facts"><div><span>PREÇO</span><strong>{{ item.preco === 0 ? 'Gratuito' : (item.preco | currency:'BRL') }}</strong></div><div><span>AVALIAÇÃO</span><strong class="rating">★ {{ item.avaliacao.toFixed(1) }}<small> / 5</small></strong></div><div><span>SITUAÇÃO</span>@if (item.disponivel) { <strong class="available">Disponível</strong> } @else { <strong class="unavailable">Indisponível</strong> }</div></div>
+        <a class="primary-button" routerLink="/jogos">Continuar explorando <span>↗</span></a>
+      </div>
+    </article>
+  } @else {
+    <div class="not-found"><span class="eyebrow">ERRO 404 / REGISTRO AUSENTE</span><h1 class="display-title">JOGO NÃO<br>ENCONTRADO<span>.</span></h1><p>Esse jogo não está no catálogo ou o endereço não é válido.</p><a class="primary-button" routerLink="/jogos">Voltar ao catálogo</a></div>
+  }
+</section>

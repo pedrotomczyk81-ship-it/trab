@@ -1,0 +1,11 @@
+<header class="topbar">
+  <a class="brand" routerLink="/" aria-label="GameHub, página inicial">
+    <span class="brand-mark">G</span><span>GAME<span class="brand-accent">HUB</span></span>
+  </a>
+  <nav class="main-nav" aria-label="Navegação principal">
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Início</a>
+    <a routerLink="/jogos" routerLinkActive="active">Jogos</a>
+    <a routerLink="/sobre" routerLinkActive="active">Sobre</a>
+  </nav>
+  <a class="add-link" routerLink="/cadastrar"><span aria-hidden="true">+</span> Novo jogo</a>
+</header>
